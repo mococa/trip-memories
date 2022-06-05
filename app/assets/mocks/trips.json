@@ -1,0 +1,51 @@
+[
+  {
+    "id": "rio-trip",
+    "title": "Rio de Janeiro",
+    "banner": "assets/images/rio/main.jpg",
+    "images": [
+      "assets/images/rio/main.jpg",
+      "assets/images/rio/1.jpg",
+      "assets/images/rio/2.jpg"
+    ],
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Imperdiet sed euismod nisi porta lorem mollis aliquam. Et tortor consequat id porta nibh. Augue ut lectus arcu bibendum at varius vel pharetra. Ut enim blandit volutpat maecenas volutpat blandit aliquam etiam. Adipiscing enim eu turpis egestas. Egestas erat imperdiet sed euismod nisi porta lorem. Risus nullam eget felis eget nunc lobortis. Aliquet porttitor lacus luctus accumsan tortor posuere ac ut consequat. Habitasse platea dictumst quisque sagittis.\nMollis aliquam ut porttitor leo a diam. Malesuada fames ac turpis egestas sed tempus urna et pharetra. Velit laoreet id donec ultrices. Blandit volutpat maecenas volutpat blandit. Dictumst quisque sagittis purus sit amet volutpat consequat mauris. Ut tellus elementum sagittis vitae et leo. Faucibus purus in massa tempor nec feugiat nisl pretium. Ac turpis egestas maecenas pharetra convallis. Odio morbi quis commodo odio. Amet dictum sit amet justo donec enim diam vulputate ut. Dictum at tempor commodo ullamcorper. Vitae justo eget magna fermentum iaculis eu non diam phasellus. Adipiscing diam donec adipiscing tristique risus nec. Tellus orci ac auctor augue. Eleifend mi in nulla posuere. Pellentesque habitant morbi tristique senectus et netus et malesuada fames. Morbi enim nunc faucibus a pellentesque."
+  },
+  {
+    "id": "floripa-trip",
+    "title": "Florianópolis",
+    "banner": "assets/images/floripa/main.jpg",
+    "images": ["assets/images/floripa/main.jpg", "assets/images/floripa/1.jpg"],
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Imperdiet sed euismod nisi porta lorem mollis aliquam. Et tortor consequat id porta nibh. Augue ut lectus arcu bibendum at varius vel pharetra. Ut enim blandit volutpat maecenas volutpat blandit aliquam etiam. Adipiscing enim eu turpis egestas. Egestas erat imperdiet sed euismod nisi porta lorem. Risus nullam eget felis eget nunc lobortis. Aliquet porttitor lacus luctus accumsan tortor posuere ac ut consequat. Habitasse platea dictumst quisque sagittis.\nMollis aliquam ut porttitor leo a diam. Malesuada fames ac turpis egestas sed tempus urna et pharetra. Velit laoreet id donec ultrices. Blandit volutpat maecenas volutpat blandit. Dictumst quisque sagittis purus sit amet volutpat consequat mauris. Ut tellus elementum sagittis vitae et leo. Faucibus purus in massa tempor nec feugiat nisl pretium. Ac turpis egestas maecenas pharetra convallis. Odio morbi quis commodo odio. Amet dictum sit amet justo donec enim diam vulputate ut. Dictum at tempor commodo ullamcorper. Vitae justo eget magna fermentum iaculis eu non diam phasellus. Adipiscing diam donec adipiscing tristique risus nec. Tellus orci ac auctor augue. Eleifend mi in nulla posuere. Pellentesque habitant morbi tristique senectus et netus et malesuada fames. Morbi enim nunc faucibus a pellentesque."
+  },
+  {
+    "id": "minas-trip",
+    "title": "Minas Gerais",
+    "banner": "assets/images/minas-gerais/main.jpg",
+    "images": [
+      "assets/images/minas-gerais/main.jpg",
+      "assets/images/minas-gerais/1.jpg",
+      "assets/images/minas-gerais/2.jpg"
+    ],
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Imperdiet sed euismod nisi porta lorem mollis aliquam. Et tortor consequat id porta nibh. Augue ut lectus arcu bibendum at varius vel pharetra. Ut enim blandit volutpat maecenas volutpat blandit aliquam etiam. Adipiscing enim eu turpis egestas. Egestas erat imperdiet sed euismod nisi porta lorem. Risus nullam eget felis eget nunc lobortis. Aliquet porttitor lacus luctus accumsan tortor posuere ac ut consequat. Habitasse platea dictumst quisque sagittis.\nMollis aliquam ut porttitor leo a diam. Malesuada fames ac turpis egestas sed tempus urna et pharetra. Velit laoreet id donec ultrices. Blandit volutpat maecenas volutpat blandit. Dictumst quisque sagittis purus sit amet volutpat consequat mauris. Ut tellus elementum sagittis vitae et leo. Faucibus purus in massa tempor nec feugiat nisl pretium. Ac turpis egestas maecenas pharetra convallis. Odio morbi quis commodo odio. Amet dictum sit amet justo donec enim diam vulputate ut. Dictum at tempor commodo ullamcorper. Vitae justo eget magna fermentum iaculis eu non diam phasellus. Adipiscing diam donec adipiscing tristique risus nec. Tellus orci ac auctor augue. Eleifend mi in nulla posuere. Pellentesque habitant morbi tristique senectus et netus et malesuada fames. Morbi enim nunc faucibus a pellentesque."
+  },
+  {
+    "id": "sao-paulo-trip",
+    "title": "São Paulo",
+    "banner": "assets/images/sao-paulo/main.jpg",
+    "images": [
+      "assets/images/sao-paulo/main.jpg",
+      "assets/images/sao-paulo/1.jpg"
+    ],
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Imperdiet sed euismod nisi porta lorem mollis aliquam. Et tortor consequat id porta nibh. Augue ut lectus arcu bibendum at varius vel pharetra. Ut enim blandit volutpat maecenas volutpat blandit aliquam etiam. Adipiscing enim eu turpis egestas. Egestas erat imperdiet sed euismod nisi porta lorem. Risus nullam eget felis eget nunc lobortis. Aliquet porttitor lacus luctus accumsan tortor posuere ac ut consequat. Habitasse platea dictumst quisque sagittis.\nMollis aliquam ut porttitor leo a diam. Malesuada fames ac turpis egestas sed tempus urna et pharetra. Velit laoreet id donec ultrices. Blandit volutpat maecenas volutpat blandit. Dictumst quisque sagittis purus sit amet volutpat consequat mauris. Ut tellus elementum sagittis vitae et leo. Faucibus purus in massa tempor nec feugiat nisl pretium. Ac turpis egestas maecenas pharetra convallis. Odio morbi quis commodo odio. Amet dictum sit amet justo donec enim diam vulputate ut. Dictum at tempor commodo ullamcorper. Vitae justo eget magna fermentum iaculis eu non diam phasellus. Adipiscing diam donec adipiscing tristique risus nec. Tellus orci ac auctor augue. Eleifend mi in nulla posuere. Pellentesque habitant morbi tristique senectus et netus et malesuada fames. Morbi enim nunc faucibus a pellentesque."
+  },
+  {
+    "id": "sao-paulo-trip-2",
+    "title": "São Paulo again",
+    "banner": "assets/images/sao-paulo/main.jpg",
+    "images": [
+      "assets/images/sao-paulo/main.jpg",
+      "assets/images/sao-paulo/1.jpg"
+    ],
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Imperdiet sed euismod nisi porta lorem mollis aliquam. Et tortor consequat id porta nibh. Augue ut lectus arcu bibendum at varius vel pharetra. Ut enim blandit volutpat maecenas volutpat blandit aliquam etiam. Adipiscing enim eu turpis egestas. Egestas erat imperdiet sed euismod nisi porta lorem. Risus nullam eget felis eget nunc lobortis. Aliquet porttitor lacus luctus accumsan tortor posuere ac ut consequat. Habitasse platea dictumst quisque sagittis.\nMollis aliquam ut porttitor leo a diam. Malesuada fames ac turpis egestas sed tempus urna et pharetra. Velit laoreet id donec ultrices. Blandit volutpat maecenas volutpat blandit. Dictumst quisque sagittis purus sit amet volutpat consequat mauris. Ut tellus elementum sagittis vitae et leo. Faucibus purus in massa tempor nec feugiat nisl pretium. Ac turpis egestas maecenas pharetra convallis. Odio morbi quis commodo odio. Amet dictum sit amet justo donec enim diam vulputate ut. Dictum at tempor commodo ullamcorper. Vitae justo eget magna fermentum iaculis eu non diam phasellus. Adipiscing diam donec adipiscing tristique risus nec. Tellus orci ac auctor augue. Eleifend mi in nulla posuere. Pellentesque habitant morbi tristique senectus et netus et malesuada fames. Morbi enim nunc faucibus a pellentesque."
+  }
+]
