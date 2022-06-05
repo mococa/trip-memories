@@ -1,7 +1,6 @@
 package repositories
 
 import (
-	"fmt"
 	"tripmemories/server/entities"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -23,8 +22,6 @@ func NewUsersRepository() UsersRepository {
 func (*repo) CreateUser(user *entities.User) error {
 	// Get a new dynamo client
 	dynamoDBClient := createDynamoDBClient()
-
-	fmt.Println(dynamoDBClient.Config.Credentials.IsExpired())
 
 	// Transform trip into map[string]*dynamodb.AttributeValue
 	attributeValue, err := dynamodbattribute.MarshalMap(user)

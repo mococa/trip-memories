@@ -6,7 +6,6 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute"
-	"github.com/google/uuid"
 )
 
 type TripRepository interface {
@@ -24,10 +23,6 @@ func NewTripRepository() TripRepository {
 func (*repo) CreateTrip(user_pk string, trip *entities.Trip) error {
 	// Get a new dynamo client
 	dynamoDBClient := createDynamoDBClient()
-
-	// Add PK and SK to trip
-	trip.PartitionKey = user_pk
-	trip.SortKey = "trip#" + uuid.NewString()
 
 	// Transform trip into map[string]*dynamodb.AttributeValue
 	attributeValue, err := dynamodbattribute.MarshalMap(trip)
