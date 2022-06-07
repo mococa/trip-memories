@@ -23,7 +23,7 @@ class TopBar extends StatelessWidget {
               'Logout',
               style: TextStyle(color: material.Colors.black),
             )),
-        IconButton(onTap: onCreateMemory, icon: material.Icons.add)
+        IconButton(onTap: onCreateMemory, icon: material.Icons.add),
       ],
     ));
   }
