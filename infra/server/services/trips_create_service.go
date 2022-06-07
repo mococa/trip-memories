@@ -16,7 +16,7 @@ func (*service) CreateTrip(user_pk string, trip *entities.Trip) (*entities.Trip,
 	}
 
 	if user_pk == "" {
-		err := errors.New("User_pk is empty")
+		err := errors.New("Unauthorized request")
 		return nil, err
 	}
 

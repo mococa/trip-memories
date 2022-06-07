@@ -11,7 +11,7 @@ import (
 func (*service) ListTrips(user_pk string) ([]entities.Trip, error) {
 	// Returning if user_pk is empty
 	if user_pk == "" {
-		err := errors.New("User_pk is empty")
+		err := errors.New("Unauthorized request")
 		return nil, err
 	}
 

@@ -11,13 +11,13 @@ import (
 func (*service) FindTrip(user_pk string, trip_sk string) (*entities.Trip, error) {
 	// Returning if user_pk is empty
 	if user_pk == "" {
-		err := errors.New("User_pk is empty")
+		err := errors.New("Unauthorized request")
 		return nil, err
 	}
 
 	// Returning if trip_sk is empty
-	if user_pk == "" {
-		err := errors.New("User_pk is empty")
+	if trip_sk == "" {
+		err := errors.New("Trip ID not entered")
 		return nil, err
 	}
 
