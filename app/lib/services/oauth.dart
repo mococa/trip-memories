@@ -78,6 +78,8 @@ class OAuth {
     Navigator.of(context).pushNamedAndRemoveUntil('/login', (route) => false);
     context.read<Authentication>().setUser(null);
 
+    await _googleSignIn.disconnect();
+
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.clear();
   }
