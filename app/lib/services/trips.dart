@@ -1,10 +1,12 @@
 /* -------------- External -------------- */
 import 'dart:convert';
+import 'package:http_parser/http_parser.dart';
 import 'dart:io';
 import 'package:http/http.dart' as http;
 
 /* -------------- Services -------------- */
 import 'package:flutter/services.dart';
+import 'package:mime/mime.dart';
 
 /* -------------- Types -------------- */
 import 'package:trips/types/trip.dart';
@@ -12,6 +14,9 @@ import 'package:trips/types/user.dart' as u;
 
 /* -------------- Utils -------------- */
 import 'package:trips/utils/constants.dart';
+
+/* -------------- Services -------------- */
+import 'package:trips/services/api.dart';
 
 class Trips {
   Future<List<Trip>> find() async {
@@ -28,48 +33,55 @@ class Trips {
     return trips.toList();
   }
 
-  Future< /*List<Trip>*/ void> findByUserId(String googleId) async {
-    final String url = "$apiUrl/trips?user_pk=user#$googleId";
-    http.Response res = await http.get(Uri.parse(url));
+  static Future<void> findUserTrips(String googleId) async {
+    final res = await Api(secure: true).get("/trips");
 
     dynamic trips = jsonDecode(res.body);
 
     print(trips);
   }
 
-  static Future<List<String?>> uploadImages(
+  static Future<String?> uploadImages(
       u.User user, List<File> imgs, String tripId) async {
-    List<String?> urls = await Future.wait(imgs.map((img) async {
-      // var upload = await supabase.storage.from('pictures').upload(
-      //     "${user.id}/$tripId/${const Uuid().v4()}.${img.path.split('.').last}",
-      //     img);
-      // return upload.data;
-      return "";
+    final request =
+        http.MultipartRequest("POST", Uri.parse("$apiUrl/trips/upload-images"));
+
+    final files = await Future.wait(imgs.map((image) async {
+      final mimeTypeData =
+          lookupMimeType(image.path, headerBytes: [0xFF, 0xD8])!.split('/');
+
+      final file = await http.MultipartFile.fromPath('image', image.path,
+          contentType: MediaType(mimeTypeData[0], mimeTypeData[1]));
+
+      return file;
     }));
 
-    return urls;
+    request.headers.addAll({"Authorization": "user#${user.googleId}"});
+
+    request.files.addAll(files);
+
+    request.fields['trip'] = tripId;
+
+    final streamedResponse = await request.send();
+
+    final response = await http.Response.fromStream(streamedResponse);
+
+    print(response.body);
+    return response.body;
   }
 
   static Future createTrip(u.User user, String title, String description,
       DateTime doneAt, List<File> imgs) async {
-    // PostgrestResponse<dynamic> newTrip = await supabase.from('trips').insert({
-    //   'user': "${user.id}",
-    //   'done_at': doneAt.toString(),
-    //   'name': title,
-    //   'description': description,
-    // }).execute();
-    // if (newTrip.error != null) {
-    //   print(newTrip.error);
-    //   throw ("Error!");
-    // }
-    // final uploaded_imgs = await uploadImages(user, imgs, newTrip.data[0]['id']);
-    // final res = await supabase.storage
-    //     .from('pictures')
-    //     .list(path: 'd698867d-822e-4f1c-a073-8c73152167b0');
-    // final data = res.data;
-    // print(data?.map((e) => e.name).toList());
-    // // print(newTrip.data);
-    // // print(uploaded_imgs);
+    final res = await Api(secure: true).post(
+        "/trips",
+        jsonEncode({
+          'partition_key': "user#${user.googleId}",
+          'name': title,
+          'description': description,
+          'done_at': doneAt.millisecond,
+        }));
+
+    print(res.body);
   }
 
   Future<Trip> findById(String id) async {

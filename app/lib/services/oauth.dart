@@ -3,7 +3,6 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -13,33 +12,29 @@ import 'package:trips/providers/authentication.dart';
 /* -------------- Types -------------- */
 import 'package:trips/types/user.dart';
 
-/* -------------- Utils -------------- */
-import 'package:trips/utils/constants.dart';
+/* -------------- Services -------------- */
+import 'package:trips/services/api.dart';
 
 class OAuth {
   static final _googleSignIn = GoogleSignIn();
 
-  static Future<GoogleSignInAccount?> googleSignIn() async =>
+  static Future<GoogleSignInAccount?> getGoogleAccount() async =>
       await _googleSignIn.signIn().catchError((error) {
         throw Error();
       });
 
   static Future<User> login(String googleId) async {
-    final String url = "$apiUrl/auth?user_pk=user%23$googleId";
-    http.Response res = await http.get(Uri.parse(url));
+    final res = await Api().get("/auth?user_pk=user%23$googleId");
     dynamic user = jsonDecode(res.body);
 
     return User.fromJson(user);
   }
 
   static Future<User> signUp(User user) async {
-    const String url = "$apiUrl/auth";
-    http.Response res = await http.post(Uri.parse(url),
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-        body: jsonEncode(user.toJson()));
+    final res = await Api().post("/auth", jsonEncode(user.toJson()));
+
     dynamic createdUser = jsonDecode(res.body);
+
     return User.fromJson(createdUser);
   }
 
