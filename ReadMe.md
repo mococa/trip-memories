@@ -2,17 +2,33 @@
 
 A simple and small cute app made with Flutter, Go, GoogleOAuth and AWS.
 
-![home-page](https://user-images.githubusercontent.com/13316723/171986535-8d3af877-fe13-4617-a70a-7e0c8ec9ef75.png)
+<table>
+  <tr>
+    <td>
+      <img alt="Login page"  src="https://user-images.githubusercontent.com/13316723/172290822-cd3cc1fc-e3d9-4419-b306-3823db8b3ef8.png" height="400px"/>
+    </td>
+    <td>
+      <img alt="Home page" src="https://user-images.githubusercontent.com/13316723/171986535-8d3af877-fe13-4617-a70a-7e0c8ec9ef75.png" height="400px"/>
+    </td>
+  </tr>
+</table>
 
 <details>
   <summary>More images</summary>
-  
-![google-auth](https://user-images.githubusercontent.com/13316723/171986559-fec8f269-7f3c-4675-aafa-7b242aa9336d.png)
 
-![trip](https://user-images.githubusercontent.com/13316723/171986574-f68c07b3-5873-4fcb-8197-ad429c1c0ae8.png)
-
-![form](https://user-images.githubusercontent.com/13316723/171986584-3e48660f-a62c-433c-942a-5912832bb2ab.png)
-es.githubusercontent.com/13316723/171986574-f68c07b3-5873-4fcb-8197-ad429c1c0ae8.png)
+  <table>
+    <tr>
+      <td>
+        <img alt="Google OAuth" src="https://user-images.githubusercontent.com/13316723/172291647-3d79b4a9-286e-46c7-8f1c-097381c0bd59.png" height="400px"/>      
+      </td>
+      <td>
+        <img alt="Trip page"  src="https://user-images.githubusercontent.com/13316723/171986574-f68c07b3-5873-4fcb-8197-ad429c1c0ae8.png" height="400px"/>
+      </td>
+      <td>
+        <img alt="Form page" src="https://user-images.githubusercontent.com/13316723/171986584-3e48660f-a62c-433c-942a-5912832bb2ab.png" height="400px"/>
+      </td>
+    </tr>
+  </table>
 
 </details>
 
