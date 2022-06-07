@@ -30,6 +30,11 @@ func (*repo) CreateTrip(user_pk string, trip *entities.Trip) error {
 		return err
 	}
 
+	// Set datatype
+	attributeValue["datatype"] = &dynamodb.AttributeValue{
+		S: aws.String("trip"),
+	}
+
 	// Create Trip item input
 	item := &dynamodb.PutItemInput{
 		Item:      attributeValue,
@@ -51,7 +56,6 @@ func (*repo) FindTrip(user_pk string, trip_sk string) (*dynamodb.QueryOutput, er
 
 	// Create query input params
 	params := &dynamodb.QueryInput{
-
 		TableName:              aws.String("MainTable-DEV"),
 		KeyConditionExpression: aws.String("partition_key = :partition_key AND sort_key = :secondary_key"),
 		ExpressionAttributeValues: map[string]*dynamodb.AttributeValue{
@@ -81,10 +85,14 @@ func (*repo) ListUserTrips(user_pk string) (*dynamodb.QueryOutput, error) {
 	// Create query input params
 	params := &dynamodb.QueryInput{
 		TableName:              aws.String("MainTable-DEV"),
-		KeyConditionExpression: aws.String("partition_key = :partition_key"),
+		IndexName:              aws.String("datatype-pk-index"),
+		KeyConditionExpression: aws.String("partition_key = :partition_key AND datatype = :datatype"),
 		ExpressionAttributeValues: map[string]*dynamodb.AttributeValue{
 			":partition_key": {
 				S: aws.String(user_pk),
+			},
+			":datatype": {
+				S: aws.String("trip"),
 			},
 		},
 	}

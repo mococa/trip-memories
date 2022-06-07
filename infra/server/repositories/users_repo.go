@@ -29,6 +29,11 @@ func (*repo) CreateUser(user *entities.User) error {
 		return err
 	}
 
+	// Set datatype
+	attributeValue["datatype"] = &dynamodb.AttributeValue{
+		S: aws.String("user"),
+	}
+
 	// Create Trip item input
 	item := &dynamodb.PutItemInput{
 		Item:      attributeValue,
@@ -50,12 +55,15 @@ func (*repo) FindUserByPk(user_pk string) (*dynamodb.QueryOutput, error) {
 
 	// Create query input params
 	params := &dynamodb.QueryInput{
-
+		IndexName:              aws.String("datatype-pk-index"),
 		TableName:              aws.String("MainTable-DEV"),
-		KeyConditionExpression: aws.String("partition_key = :partition_key"),
+		KeyConditionExpression: aws.String("partition_key = :partition_key AND datatype = :datatype"),
 		ExpressionAttributeValues: map[string]*dynamodb.AttributeValue{
 			":partition_key": {
 				S: aws.String(user_pk),
+			},
+			":datatype": {
+				S: aws.String("user"),
 			},
 		},
 	}
