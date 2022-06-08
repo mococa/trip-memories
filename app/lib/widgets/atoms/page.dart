@@ -6,23 +6,33 @@ class Page extends StatelessWidget {
     Key? key,
     this.padding,
     this.crossAxisAlignment,
+    this.onRefresh,
     required this.children,
   }) : super(key: key);
 
   final EdgeInsetsGeometry? padding;
   final CrossAxisAlignment? crossAxisAlignment;
   final List<Widget> children;
+  final Future<void> Function()? onRefresh;
+
+  void nothing() {}
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: SafeArea(
-            child: SingleChildScrollView(
-      padding: padding ?? const EdgeInsets.all(24),
-      child: Column(
+      child: onRefresh != null
+          ? RefreshIndicator(onRefresh: onRefresh!, child: _buildPageContent())
+          : _buildPageContent(),
+    ));
+  }
+
+  ListView _buildPageContent() {
+    return ListView(padding: padding ?? const EdgeInsets.all(24), children: [
+      Column(
         crossAxisAlignment: crossAxisAlignment ?? CrossAxisAlignment.start,
         children: children,
       ),
-    )));
+    ]);
   }
 }

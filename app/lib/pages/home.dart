@@ -39,11 +39,16 @@ class _HomePage extends State<HomePage> {
   }
 
   void _handleGetTrips() async {
-    final foundTrips = await Trips().find();
+    try {
+      final foundTrips = await Trips.findUserTrips();
 
-    setState(() {
-      _trips = foundTrips;
-    });
+      setState(() {
+        _trips = foundTrips;
+      });
+    } catch (e) {
+      // ignore: todo
+      // TODO: handle error
+    }
   }
 
   @override
@@ -57,6 +62,9 @@ class _HomePage extends State<HomePage> {
   Widget build(BuildContext context) {
     return app.Page(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+        onRefresh: () async {
+          _handleGetTrips();
+        },
         children: [
           TopBar(
             onCreateMemory: () => handleCreateTrip(context),
@@ -97,12 +105,16 @@ class _HomePage extends State<HomePage> {
 
   Widget buildTripButton(Trip trip) {
     return Hero(
-      tag: 'trip-banner-${trip.id}',
+      tag: 'trip-banner-${trip.sortKey}',
       child: ImageButton(
-          image: AssetImage(trip.banner),
+          image: NetworkImage(
+              "https://trip-memories-images.s3.amazonaws.com/${trip.picture}"),
           onTap: () {
             Navigator.of(context).pushNamed('/trip',
-                arguments: TripArguments(id: trip.id, banner: trip.banner));
+                arguments: TripArguments(
+                    id: trip.sortKey,
+                    banner:
+                        "https://trip-memories-images.s3.amazonaws.com/${trip.picture}"));
           }),
     );
   }
