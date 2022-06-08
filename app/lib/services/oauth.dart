@@ -31,7 +31,7 @@ class OAuth {
   }
 
   static Future<User> signUp(User user) async {
-    final res = await Api().post("/auth", jsonEncode(user.toJson()));
+    final res = await Api().post("/auth", user.toJson());
 
     dynamic createdUser = jsonDecode(res.body);
 
@@ -78,9 +78,8 @@ class OAuth {
     Navigator.of(context).pushNamedAndRemoveUntil('/login', (route) => false);
     context.read<Authentication>().setUser(null);
 
-    await _googleSignIn.disconnect();
-
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    await _googleSignIn.disconnect();
     await prefs.clear();
   }
 }

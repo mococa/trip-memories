@@ -26,7 +26,8 @@ class _TripPageState extends State<TripPage> {
   Trip? trip;
 
   _handleGetTrip(String id) async {
-    final myTrip = await Trips().findById(id);
+    print(id);
+    final myTrip = await Trips.findTripById(id);
 
     setState(() {
       trip = myTrip;
@@ -72,7 +73,7 @@ class _TripPageState extends State<TripPage> {
           Hero(
             tag: 'trip-banner-${widget.tripId}',
             child: Image(
-              image: AssetImage(widget.banner),
+              image: NetworkImage(widget.banner),
               fit: BoxFit.cover,
               height: 260,
               width: MediaQuery.of(context).size.width,
@@ -106,10 +107,15 @@ class _TripPageState extends State<TripPage> {
               Navigator.push(context, LightBoxRoute(
                 builder: (BuildContext context) {
                   return LightBox(
+                    initialIndex:
+                        (trip!.images as List<String>).indexWhere((element) {
+                      return imgUrl.endsWith(element);
+                    }),
                     imageType: ImageType.URL,
-                    images: const [
-                      'https://user-images.githubusercontent.com/42270511/114654248-b8381a00-9d24-11eb-9a9d-727efe4ce1d4.png'
-                    ],
+                    images: (trip!.images as List<String>).map((e) {
+                      print(e);
+                      return "https://trip-memories-images.s3.amazonaws.com/$e";
+                    }).toList(),
                   );
                 },
               ));
@@ -131,9 +137,12 @@ class _TripPageState extends State<TripPage> {
             child: Wrap(
               crossAxisAlignment: WrapCrossAlignment.start,
               spacing: 10,
-              children: const [
-                'https://user-images.githubusercontent.com/42270511/114654248-b8381a00-9d24-11eb-9a9d-727efe4ce1d4.png'
-              ].map(buildPicture).toList(),
+              children: (trip!.images as List<String>)
+                  .map(
+                      (e) => "https://trip-memories-images.s3.amazonaws.com/$e")
+                  .toList()
+                  .map(buildPicture)
+                  .toList(),
             ),
           ),
         ),
@@ -152,7 +161,7 @@ class _TripPageState extends State<TripPage> {
           controller: controller,
           children: [
             Column(children: [
-              Text(trip?.title ?? '',
+              Text(trip!.name,
                   style: const TextStyle(
                       fontWeight: FontWeight.w600, fontSize: 24)),
               const SizedBox(height: 4),

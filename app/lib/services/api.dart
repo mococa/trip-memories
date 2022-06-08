@@ -1,4 +1,6 @@
 /* -------------- External -------------- */
+import 'dart:convert';
+
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -27,7 +29,7 @@ class Api {
     }
 
     return http.post(Uri.parse("$apiUrl$endpoint"),
-        body: body, headers: headers);
+        body: jsonEncode(body), headers: headers);
   }
 
   Future<http.Response> get(String endpoint) async {
@@ -45,7 +47,7 @@ class Api {
         "Authorization": "user#$userId",
       });
     }
-
+    print(Uri.parse("$apiUrl$endpoint"));
     return http.get(Uri.parse("$apiUrl$endpoint"), headers: headers);
   }
 }

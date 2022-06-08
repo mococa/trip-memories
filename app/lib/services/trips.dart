@@ -19,26 +19,12 @@ import 'package:trips/utils/constants.dart';
 import 'package:trips/services/api.dart';
 
 class Trips {
-  Future<List<Trip>> find() async {
-    final String response =
-        await rootBundle.loadString('assets/mocks/trips.json');
-    Iterable data = json.decode(response);
-    Iterable<Trip> trips = data.map((json) => Trip(
-        id: json['id'],
-        banner: json['banner'],
-        description: json['description'],
-        images: json['images'].cast<String>(),
-        title: json['title']));
+  static Future<List<Trip>> findUserTrips() async {
+    final res = await Api(secure: true).get("/trips/list");
 
-    return trips.toList();
-  }
+    List<dynamic> trips = jsonDecode(res.body);
 
-  static Future<void> findUserTrips(String googleId) async {
-    final res = await Api(secure: true).get("/trips");
-
-    dynamic trips = jsonDecode(res.body);
-
-    print(trips);
+    return trips.map(Trip.fromJson).toList();
   }
 
   static Future<String?> uploadImages(
@@ -67,27 +53,31 @@ class Trips {
     final response = await http.Response.fromStream(streamedResponse);
 
     print(response.body);
-    return response.body;
+    // return response.body;
   }
 
   static Future createTrip(u.User user, String title, String description,
       DateTime doneAt, List<File> imgs) async {
-    final res = await Api(secure: true).post(
-        "/trips",
-        jsonEncode({
-          'partition_key': "user#${user.googleId}",
-          'name': title,
-          'description': description,
-          'done_at': doneAt.millisecond,
-        }));
+    final res = await Api(secure: true).post("/trips", {
+      'name': title,
+      'description': description,
+      'done_at': doneAt.millisecond,
+    });
 
-    print(res.body);
+    dynamic trip = jsonDecode(res.body);
+
+    await uploadImages(user, imgs, trip["sort_key"]);
   }
 
-  Future<Trip> findById(String id) async {
-    var trips = await find();
-    await Future.delayed(const Duration(milliseconds: 500));
+  static Future<Trip> findTripById(String id) async {
+    print("sk é " + id);
+    final res = await Api(secure: true)
+        .get("/trips?trip_sk=${Uri.encodeComponent(id)}");
 
-    return trips.where((trip) => trip.id == id).first;
+    dynamic trips = jsonDecode(res.body);
+
+    print(trips);
+
+    return Trip.fromJson(trips);
   }
 }

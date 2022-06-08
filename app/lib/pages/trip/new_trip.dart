@@ -66,11 +66,17 @@ class _NewTripState extends State<NewTrip> {
 
     User? user = Provider.of<Authentication>(context, listen: false).user;
 
-    if (user == null || images.isEmpty) return;
+    if (user == null || images.isEmpty) {
+      setState(() {
+        loading = false;
+      });
+      return;
+    }
 
     try {
       await Trips.createTrip(user, nameController.text,
           descriptionController.text, doneAt, images);
+      Navigator.of(context).pop();
     } catch (err) {
       print(err);
     }
