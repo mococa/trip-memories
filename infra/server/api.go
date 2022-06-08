@@ -34,6 +34,7 @@ func SetupRoutes(router *mux.Router) {
 	router.HandleFunc("/trips", tripsController.FindTrip).Methods("GET")
 	router.HandleFunc("/trips/list", tripsController.ListTrips).Methods("GET")
 	router.HandleFunc("/trips", tripsController.CreateTrip).Methods("POST")
+	router.HandleFunc("/trips/upload-images", tripsController.UploadTripImages).Methods("POST")
 
 	/* -------------- Authentication -------------- */
 	router.HandleFunc("/auth", usersController.FindUserByPk).Methods("GET")
