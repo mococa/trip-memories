@@ -27,7 +27,7 @@ class Trips {
     return trips.map(Trip.fromJson).toList();
   }
 
-  static Future<String?> uploadImages(
+  static Future<void> uploadImages(
       u.User user, List<File> imgs, String tripId) async {
     final request =
         http.MultipartRequest("POST", Uri.parse("$apiUrl/trips/upload-images"));
@@ -50,10 +50,7 @@ class Trips {
 
     final streamedResponse = await request.send();
 
-    final response = await http.Response.fromStream(streamedResponse);
-
-    print(response.body);
-    // return response.body;
+    await http.Response.fromStream(streamedResponse);
   }
 
   static Future createTrip(u.User user, String title, String description,
@@ -70,13 +67,10 @@ class Trips {
   }
 
   static Future<Trip> findTripById(String id) async {
-    print("sk é " + id);
     final res = await Api(secure: true)
         .get("/trips?trip_sk=${Uri.encodeComponent(id)}");
 
     dynamic trips = jsonDecode(res.body);
-
-    print(trips);
 
     return Trip.fromJson(trips);
   }

@@ -47,7 +47,6 @@ class Api {
         "Authorization": "user#$userId",
       });
     }
-    print(Uri.parse("$apiUrl$endpoint"));
     return http.get(Uri.parse("$apiUrl$endpoint"), headers: headers);
   }
 }

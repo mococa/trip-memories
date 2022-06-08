@@ -26,7 +26,6 @@ class _TripPageState extends State<TripPage> {
   Trip? trip;
 
   _handleGetTrip(String id) async {
-    print(id);
     final myTrip = await Trips.findTripById(id);
 
     setState(() {
@@ -113,7 +112,6 @@ class _TripPageState extends State<TripPage> {
                     }),
                     imageType: ImageType.URL,
                     images: (trip!.images as List<String>).map((e) {
-                      print(e);
                       return "https://trip-memories-images.s3.amazonaws.com/$e";
                     }).toList(),
                   );
